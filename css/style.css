@@ -52,7 +52,7 @@ body{
     padding: 20px;
     background: red;
     width: 300px;
-    border: 10px;
+    border: 10px solid black;
 }
 input{
     width: 90%;
@@ -113,7 +113,7 @@ button{
     transition: 0.3s;
     background: orange;
     color: white;
-    border: yellow;
+    border: 2px solid yellow;
     padding: 10px;
     border-radius: 5px;
 }
