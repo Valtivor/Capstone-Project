@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectiles & Motion - Detailed Notes</title>
+    <!-- Beautiful formulas integration support -->
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <script defer src="https://jsdelivr.net"></script>
+    <script defer src="https://jsdelivr.net" onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body { font-family: system-ui, sans-serif; line-height: 1.7; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #fafafa; color: #222; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #007bff; text-decoration: none; font-weight: bold; }
+        .note-container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1 { color: #111; border-bottom: 2px solid #eaeaea; padding-bottom: 10px; }
+        h3 { margin-top: 30px; color: #0056b3; }
+        .formula-box { background: #f4f7fa; border-left: 5px solid #007bff; padding: 15px; margin: 20px 0; text-align: center; font-size: 1.15rem; }
+        
+        /* Quiz Section Styling */
+        .quiz-section { margin-top: 50px; background: #fffdf3; border: 1px solid #f0e4b2; padding: 30px; border-radius: 8px; }
+        .quiz-option { display: block; margin: 10px 0; padding: 10px; background: white; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; }
+        .quiz-option:hover { background: #f0f4f8; }
+        .feedback { font-weight: bold; margin-top: 10px; display: none; }
+        .correct { color: #28a745; }
+        .wrong { color: #dc3545; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">&larr; Back to Dashboard</a>
+
+    <div class="note-container">
+        <h1>Projectiles and Motion (WAEC Comprehensive Notes)</h1>
+        
+        <h3>1. Fundamental Definition</h3>
+        <p>A projectile is any object launched into flight through open space that continues moving forward by its own inertia and is influenced exclusively by gravity and air resistance. In the WAEC curriculum, air resistance is assumed to be negligible.</p>
+
+        <h3>2. Resolving Initial Velocity Vectors</h3>
+        <p>When an object is launched with an initial velocity \(u\) at an angle \(\theta\) to the horizontal plane, its movement must be broken down into two separate dimensions:</p>
+        <ul>
+            <li><strong>Horizontal Component (\(u_x\)):</strong> Remains uniform throughout the entire flight because no horizontal force acts on it. Formula: \(u_x = u \cos\theta\)</li>
+            <li><strong>Vertical Component (\(u_y\)):</strong> Changes constantly due to the downward acceleration of gravity (\(g = 10 \text{ m/s}^2\)). Formula: \(u_y = u \sin\theta\)</li>
+        </ul>
+
+        <h3>3. Core Equations of Flight</h3>
+        <p>You must memorize these three primary formulas for the WAEC structural calculation section:</p>
+        
+        <div class="formula-box">
+            <strong>Time of Flight (\(T\)):</strong> Total time the projectile spending airborne.<br>
+            $$T = \frac{2u \sin\theta}{g}$$
+        </div>
+
+        <div class="formula-box">
+            <strong>Maximum Height (\(H\)):</strong> The highest vertical altitude attained.<br>
+            $$H = \frac{u^2 \sin^2\theta}{2g}$$
+        </div>
+
+        <div class="formula-box">
+            <strong>Horizontal Range (\(R\)):</strong> The total horizontal distance covered.<br>
+            $$R = \frac{u^2 \sin 2\theta}{g}$$
+        </div>
+
+        <p><strong>Crucial Examination Insight:</strong> Horizontal range is maximized when the launch angle \(\theta = 45^\circ\), because \(\sin(2 \times 45^\circ) = \sin 90^\circ = 1\).</p>
+
+        <!-- PRACTICE QUESTIONS ASSESSMENT SELECTION -->
+        <div class="quiz-section">
+            <h2>Interactive Practice Questions</h2>
+            <p><strong>Question 1:</strong> At what angle of projection is the horizontal range of a projectile maximized?</p>
+            
+            <div class="quiz-option" onclick="checkAnswer(this, false, 'q1')">A) 30&deg;</div>
+            <div class="quiz-option" onclick="checkAnswer(this, true, 'q1')">B) 45&deg; (Correct Answer)</div>
+            <div class="quiz-option" onclick="checkAnswer(this, false, 'q1')">C) 60&deg;</div>
+            <div class="quiz-option" onclick="checkAnswer(this, false, 'q1')">D) 90&deg;</div>
+
+            <div id="feedback-q1" class="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer(element, isCorrect, questionId) {
+            const feedback = document.getElementById(`feedback-${questionId}`);
+            feedback.style.display = "block";
+            if (isCorrect) {
+                feedback.innerHTML = "Correct! Range is maximized at 45 degrees because sin(2&theta;) reaches its maximum value of 1.";
+                feedback.className = "feedback correct";
+            } else {
+                feedback.innerHTML = "Incorrect. Try again! Hint: Look closely at the Crucial Examination Insight note section.";
+                feedback.className = "feedback wrong";
+            }
+        }
+    </script>
+</body>
+</html>
