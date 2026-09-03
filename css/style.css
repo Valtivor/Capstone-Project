@@ -1,10 +1,91 @@
+
 *{
     background-color: gold;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    border-bottom: 1px solid #1a1a1a;
 }
 section{
     display: flex;
     justify-content: space-between;
+    text-align: center;
+    padding: 20px 80px;
+    background: linear-gradient(to right, orange, gold)
 }
 li{
     text-decoration: none;
+    list-style: none;
+}
+nav{
+    position: fixed;
+    top: 0;
+    background-color: black;
+    padding: 15px;
+    border-radius: 20px;
+}
+nav a:hover{
+    color: red;
+}
+nav h1{
+    color: white;
+    display: inline;
+    margin-right: 20px;
+}
+body{
+    font-family: Bastoni;
+    padding: 20px;
+    background-color: gold;
+}
+.login-container{
+    text-align: center;
+    margin: 100px auto;
+    padding: 20px;
+    background: red;
+    width: 300px;
+    border: 10px;
+}
+input{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+button{
+    padding: 15px 35px;
+    margin: 10px;
+    background: blue;
+    color: yellow;
+    border: yellow;
+    border-radius: 5px;
+}
+.subjects{
+    animation: fadeIn 2s;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.card{
+    background: white;
+    padding: 20px;
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 255, 0.3);
+    transition: 0.3s;
+}
+.card:hover{
+    transform: translateY(-5px);
+    opacity: 0;
+    animation: fadeUp 1s forwards;
 }
