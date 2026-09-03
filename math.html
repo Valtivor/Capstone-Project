@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Study Notes</title>
+    
+    <!-- Load KaTeX to make math symbols look beautiful -->
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <script defer src="https://jsdelivr.net"></script>
+    <script defer src="https://jsdelivr.net"
+        onload="renderMathInElement(document.body);"></script>
+
+    <!-- Simple CSS to style your notes cleanly -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .topic-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid #007bff;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        .note-box {
+            background-color: #eef7ff;
+            border: 1px solid #bce0ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .formula {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mathematics Study Guide</h1>
+    <p>Select a topic below to review your notes and core formulas.</p>
+
+    <!-- TOPIC 1 -->
+    <div class="topic-card">
+        <h2>1. The Quadratic Formula</h2>
+        <p><strong>Overview:</strong> Used to find the roots (x-intercepts) of any quadratic equation in standard form.</p>
+        
+        <div class="note-box">
+            <strong>Standard Form:</strong> \(ax^2 + bx + c = 0\) (where \(a \neq 0\))
+        </div>
+
+        <p>To solve for \(x\), apply the quadratic formula:</p>
+        <div class="formula">
+            $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+        </div>
+
+        <p><strong>Quick Note:</strong> The value under the square root, \(b^2 - 4ac\), is called the <em>discriminant</em>. If it is negative, the equation has no real roots.</p>
+    </div>
+
+    <!-- TOPIC 2 -->
+    <div class="topic-card">
+        <h2>2. The Pythagorean Theorem</h2>
+        <p><strong>Overview:</strong> A fundamental principle in geometry that states the relationship between the sides of a right-angled triangle.</p>
+        
+        <div class="formula">
+            $$a^2 + b^2 = c^2$$
+        </div>
+
+        <div class="note-box">
+            <strong>Key Reminder:</strong> The variable \(c\) always represents the <em>hypotenuse</em>, which is the longest side and is always directly opposite the 90-degree angle.
+        </div>
+    </div>
+
+</body>
+</html>
