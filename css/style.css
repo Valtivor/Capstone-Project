@@ -64,6 +64,7 @@ button{
     margin: 10px;
     background: blue;
     color: yellow;
+    border: 2px solid yellow;
     border-radius: 5px;
 }
 .subjects{
