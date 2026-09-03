@@ -3,86 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Study Notes</title>
-    
-    <!-- Load KaTeX to make math symbols look beautiful -->
+    <title>WAEC Math Hub</title>
+    <!-- Math Rendering Support -->
     <link rel="stylesheet" href="https://jsdelivr.net">
     <script defer src="https://jsdelivr.net"></script>
-    <script defer src="https://jsdelivr.net"
-        onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://jsdelivr.net"></script>
 
-    <!-- Simple CSS to style your notes cleanly -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        .topic-card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 5px solid #007bff;
-        }
-        h2 {
-            color: #007bff;
-            margin-top: 0;
-        }
-        .note-box {
-            background-color: #eef7ff;
-            border: 1px solid #bce0ff;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-        }
-        .formula {
-            text-align: center;
-            font-size: 1.2rem;
-            margin: 15px 0;
-        }
+        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+        .sidebar { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: fill-available; }
+        .topic-btn { display: block; width: 100%; text-align: left; padding: 10px; margin-bottom: 8px; border: none; background: #e9ecef; border-radius: 4px; cursor: pointer; font-weight: 500; }
+        .topic-btn:hover, .topic-btn.active { background: #007bff; color: white; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); min-height: 400px; }
+        .hidden { display: none; }
+        .note-box { background: #f0f7ff; border-left: 4px solid #007bff; padding: 15px; margin: 15px 0; }
     </style>
 </head>
 <body>
 
-    <h1>Mathematics Study Guide</h1>
-    <p>Select a topic below to review your notes and core formulas.</p>
+    <h1>WAEC Mathematics Syllabus Study Hub</h1>
+    <p>Select any curriculum topic from the sidebar to open the revision notes.</p>
 
-    <!-- TOPIC 1 -->
-    <div class="topic-card">
-        <h2>1. The Quadratic Formula</h2>
-        <p><strong>Overview:</strong> Used to find the roots (x-intercepts) of any quadratic equation in standard form.</p>
-        
-        <div class="note-box">
-            <strong>Standard Form:</strong> \(ax^2 + bx + c = 0\) (where \(a \neq 0\))
+    <div class="grid">
+        <!-- Student Selection Column -->
+        <div class="sidebar">
+            <h3>Topics List</h3>
+            <button class="topic-btn active" onclick="showTopic('indices')">Indices & Logarithms</button>
+            <button class="topic-btn" onclick="showTopic('quadratic')">Quadratic Equations</button>
+            <button class="topic-btn" onclick="showTopic('circle')">Circle Geometry</button>
+            <button class="topic-btn" onclick="showTopic('trig')">Trigonometry & Bearings</button>
         </div>
 
-        <p>To solve for \(x\), apply the quadratic formula:</p>
-        <div class="formula">
-            $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
-        </div>
+        <!-- Dynamic Note Display Column -->
+        <div class="content-area" id="display-panel">
+            
+            <!-- INDICES NOTE -->
+            <div id="indices" class="note-view">
+                <h2>Indices & Logarithms</h2>
+                <p>WAEC heavily tests the fundamental laws governing powers and their relationships to logarithms.</p>
+                <div class="note-box">
+                    <strong>Multiplication Law:</strong> \(a^m \times a^n = a^{m+n}\)<br>
+                    <strong>Division Law:</strong> \(a^m \div a^n = a^{m-n}\)
+                </div>
+                <p>Example: Simplify \(10^7 \div 10^3 = 10^{7-3} = 10^4\).</p>
+            </div>
 
-        <p><strong>Quick Note:</strong> The value under the square root, \(b^2 - 4ac\), is called the <em>discriminant</em>. If it is negative, the equation has no real roots.</p>
+            <!-- QUADRATIC NOTE -->
+            <div id="quadratic" class="note-view hidden">
+                <h2>Quadratic Equations</h2>
+                <p>An equation in the form \(ax^2 + bx + c = 0\).</p>
+                <div class="note-box">
+                    <strong>The General Formula:</strong>
+                    $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+                </div>
+                <p>Remember: The discriminant is \(b^2 - 4ac\). If it evaluates to less than zero, the graph does not touch the x-axis.</p>
+            </div>
+
+            <!-- CIRCLE GEOMETRY NOTE -->
+            <div id="circle" class="note-view hidden">
+                <h2>Circle Geometry</h2>
+                <p>WAEC theory questions frequently check core Circle Theorems.</p>
+                <div class="note-box">
+                    <strong>Theorem 1:</strong> The angle subtended by an arc at the centre is twice the angle subtended at any point on the remaining part of the circumference.
+                </div>
+                <p>Keep in mind that angles in the same segment of a circle are equal.</p>
+            </div>
+
+            <!-- TRIGONOMETRY NOTE -->
+            <div id="trig" class="note-view hidden">
+                <h2>Trigonometry & Bearings</h2>
+                <p>Deals with right-angled and non-right-angled triangle calculations.</p>
+                <div class="note-box">
+                    <strong>Sine Rule:</strong> \(\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}\)<br>
+                    <strong>Cosine Rule:</strong> \(a^2 = b^2 + c^2 - 2bc \cos A\)
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- TOPIC 2 -->
-    <div class="topic-card">
-        <h2>2. The Pythagorean Theorem</h2>
-        <p><strong>Overview:</strong> A fundamental principle in geometry that states the relationship between the sides of a right-angled triangle.</p>
+    <script>
+        function showTopic(topicId) {
+            // Hide all notes
+            document.querySelectorAll('.note-view').forEach(view => view.classList.add('hidden'));
+            // Remove active style from all buttons
+            document.querySelectorAll('.topic-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Show the chosen note
+            document.getElementById(topicId).classList.remove('hidden');
+            // Highlight the clicked button
+            event.currentTarget.classList.add('active');
+            
+            // Render Math inside the newly shown content
+            renderMathInElement(document.getElementById(topicId));
+        }
         
-        <div class="formula">
-            $$a^2 + b^2 = c^2$$
-        </div>
-
-        <div class="note-box">
-            <strong>Key Reminder:</strong> The variable \(c\) always represents the <em>hypotenuse</em>, which is the longest side and is always directly opposite the 90-degree angle.
-        </div>
-    </div>
-
+        // Initial page render for default active tab
+        window.onload = function() {
+            renderMathInElement(document.body);
+        };
+    </script>
 </body>
 </html>
