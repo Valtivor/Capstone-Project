@@ -2,14 +2,7 @@
 *{
     background-color: gold;
 }
-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 8%;
-    border-bottom: 1px solid #1a1a1a;
-}
-section{
+#home{
     display: flex;
     justify-content: space-between;
     text-align: center;
