@@ -3,188 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WAEC Topic Cards Hub</title>
-    <!-- Math Rendering Support for Physics & Chemistry equations -->
-    <link rel="stylesheet" href="https://jsdelivr.net">
-    <script defer src="https://jsdelivr.net"></script>
-    <script defer src="https://jsdelivr.net"></script>
-
+    <title>WAEC Revision Portal</title>
     <style>
         body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f0f2f5; color: #333; }
-        h1 { text-align: center; color: #111; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        h1, .subtitle { text-align: center; }
+        .subtitle { color: #666; margin-bottom: 30px; }
         
-        /* Filter Controls Styling */
-        .filter-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; }
-        .filter-btn { padding: 10px 20px; border: 2px solid transparent; background: white; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.2s ease; }
-        .filter-btn:hover { background: #f8f9fa; transform: translateY(-1px); }
-        .filter-btn.active { color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        
-        /* Subject Color Coding System */
-        .filter-btn[data-target="all"].active { background: #111; }
-        .filter-btn[data-target="english"].active { background: #007bff; }
-        .filter-btn[data-target="physics"].active { background: #dc3545; }
-        .filter-btn[data-target="biology"].active { background: #28a745; }
-        .filter-btn[data-target="chemistry"].active { background: #e0a800; color: #111; }
+        .filter-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .filter-btn { padding: 10px 20px; border: none; background: white; border-radius: 30px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .filter-btn.active { background: #007bff; color: white; }
 
-        /* Card Grid Layout */
         .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .topic-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; border-top: 5px solid #007bff; }
+        .card-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 10px; }
         
-        /* Card Styling */
-        .topic-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; border-top: 5px solid #ccc; }
-        .topic-card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.08); }
-        
-        /* Dynamic Border Coloring Rules based on subject tags */
-        .topic-card.english { border-top-color: #007bff; }
-        .topic-card.physics { border-top-color: #dc3545; }
-        .topic-card.biology { border-top-color: #28a745; }
-        .topic-card.chemistry { border-top-color: #e0a800; }
-
-        .subject-badge { font-size: 0.75rem; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 12px; }
-        .english .subject-badge { background: #e3f2fd; color: #007bff; }
-        .physics .subject-badge { background: #fde8e8; color: #dc3545; }
-        .biology .subject-badge { background: #e8f5e9; color: #28a745; }
-        .chemistry .subject-badge { background: #fffde7; color: #b78103; }
-
-        .card-title { font-size: 1.25rem; font-weight: bold; margin: 0 0 10px 0; color: #222; }
-        .card-desc { font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 15px; }
-        .note-box { background: #f8f9fa; border-left: 3px solid #666; padding: 12px; font-size: 0.9rem; border-radius: 0 6px 6px 0; margin-top: auto; }
-        
-        .english .note-box { border-left-color: #007bff; background: #f4f9ff; }
-        .physics .note-box { border-left-color: #dc3545; background: #fff5f5; }
-        .biology .note-box { border-left-color: #28a745; background: #f4fbf5; }
-        .chemistry .note-box { border-left-color: #e0a800; background: #fffdf2; }
-
+        /* Direct Note Navigation Link Button */
+        .note-link { display: inline-block; text-align: center; background: #007bff; color: white; text-decoration: none; padding: 10px; margin-top: 15px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: background 0.2s; }
+        .note-link:hover { background: #0056b3; }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <h1>WAEC Revision Cards</h1>
-    <p class="subtitle">Pick a subject filter below or browse through all the curriculum topic cards.</p>
+    <h1>WAEC Study Hub</h1>
+    <p class="subtitle">Select a curriculum card to view comprehensive notes and take practice quizzes.</p>
 
-    <!-- TOP FILTER CONTROL HEADERS -->
     <div class="filter-nav">
-        <button class="filter-btn active" data-target="all" onclick="filterCards('all')">Show All</button>
-        <button class="filter-btn" data-target="english" onclick="filterCards('english')">English Language</button>
-        <button class="filter-btn" data-target="physics" onclick="filterCards('physics')">Physics</button>
-        <button class="filter-btn" data-target="biology" onclick="filterCards('biology')">Biology</button>
-        <button class="filter-btn" data-target="chemistry" onclick="filterCards('chemistry')">Chemistry</button>
+        <button class="filter-btn active" onclick="filterCards('all')">Show All</button>
+        <button class="filter-btn" onclick="filterCards('physics')">Physics</button>
     </div>
 
-    <!-- DYNAMIC CARDS HUB -->
-    <div class="card-grid" id="grid-container">
-        
-        <!-- ENGLISH CARD 1 -->
-        <div class="topic-card english">
-            <div>
-                <span class="subject-badge">English</span>
-                <div class="card-title">Grammatical Concord</div>
-                <p class="card-desc">Concord covers rules dictating how sentence subjects must match their accompanying verbs perfectly.</p>
-            </div>
-            <div class="note-box">
-                <strong>Rule:</strong> Subjects starting with <em>each</em> or <em>every</em> use singular verbs.<br>
-                <em>Eg:</em> Every student <strong>is</strong> coming.
-            </div>
-        </div>
-
-        <!-- ENGLISH CARD 2 -->
-        <div class="topic-card english">
-            <div>
-                <span class="subject-badge">English</span>
-                <div class="card-title">Register Words</div>
-                <p class="card-desc">Vocabulary expressions tied heavily to specific distinct careers, environments, and industries.</p>
-            </div>
-            <div class="note-box">
-                <strong>Medical Terminology:</strong> Ward, Triage, Outpatient, Diagnosis, Anaesthetic, Prognosis.
-            </div>
-        </div>
-
-        <!-- PHYSICS CARD 1 -->
+    <div class="card-grid">
+        <!-- PHYSICS PROJECTILES CARD LINK -->
         <div class="topic-card physics">
             <div>
-                <span class="subject-badge">Physics</span>
                 <div class="card-title">Projectiles & Motion</div>
-                <p class="card-desc">Objects moving freely through open space acted upon solely by the forces of gravity parameters.</p>
+                <p>Master time of flight, maximum height, and horizontal range derivations for WAEC objectives and theory.</p>
             </div>
-            <div class="note-box">
-                <strong>Time of Flight Formula:</strong>
-                $$T = \frac{2u \sin\theta}{g}$$
-            </div>
+            <!-- Links directly to a separate deep-dive subpage -->
+            <a href="physics-projectiles.html" class="note-link">Open Full Notes & Quiz &rarr;</a>
         </div>
-
-        <!-- PHYSICS CARD 2 -->
-        <div class="topic-card physics">
-            <div>
-                <span class="subject-badge">Physics</span>
-                <div class="card-title">Wave Motion Equations</div>
-                <p class="card-desc">How energy profiles ripple across environments without shifting physical baseline mass particles.</p>
-            </div>
-            <div class="note-box">
-                <strong>Fundamental Equation:</strong>
-                $$v = f\lambda$$
-                Where \(v\) is speed, \(f\) is frequency, and \(\lambda\) is wavelength.
-            </div>
-        </div>
-
-        <!-- BIOLOGY CARD 1 -->
-        <div class="topic-card biology">
-            <div>
-                <span class="subject-badge">Biology</span>
-                <div class="card-title">Cellular Organelles</div>
-                <p class="card-desc">The basic structural micro-engines keeping complex plant and animal organism systems operational.</p>
-            </div>
-            <div class="note-box">
-                <strong>Mitochondria:</strong> Powerhouse engines handling cellular respiration tasks to yield ATP output blocks.
-            </div>
-        </div>
-
-        <!-- BIOLOGY CARD 2 -->
-        <div class="topic-card biology">
-            <div>
-                <span class="subject-badge">Biology</span>
-                <div class="card-title">Genetics & Heredity</div>
-                <p class="card-desc">Tracking transmission variables moving physical traits from parent layers down into generations.</p>
-            </div>
-            <div class="note-box">
-                <strong>Genotypes Tip:</strong> <strong>AA</strong> and <strong>AS</strong> genotypes produce clear blood systems, while <strong>SS</strong> yields Sickle Cell.
-            </div>
-        </div>
-
-        <!-- CHEMISTRY CARD 1 -->
-        <div class="topic-card chemistry">
-            <div>
-                <span class="subject-badge">Chemistry</span>
-                <div class="card-title">Boyle's Gas Law</div>
-                <p class="card-desc">Gas behaviors monitored when tracking inverse metrics between pressure scales and actual volume space.</p>
-            </div>
-            <div class="note-box">
-                <strong>Mathematical Constant:</strong>
-                $$P_1V_1 = P_2V_2$$
-                (Maintained at absolute constant temperature).
-            </div>
-        </div>
-
-        <!-- CHEMISTRY CARD 2 -->
-        <div class="topic-card chemistry">
-            <div>
-                <span class="subject-badge">Chemistry</span>
-                <div class="card-title">Faraday's Electrolysis</div>
-                <p class="card-desc">Chemical decompositions brought about by driving active electrical current down through ion solutions.</p>
-            </div>
-            <div class="note-box">
-                <strong>First Law Representation:</strong>
-                $$m = ZIt$$
-                Where \(m\) is deposited mass and \(I\) represents active amperage current.
-            </div>
-        </div>
-
     </div>
 
-    <!-- CARDS REGISTRATION FILTER UTILITIES -->
     <script>
-        function filterCards(subjectGroup) {
-            // Adjust header selector active button states
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+        function filterCards(subject) {
+            document.querySelectorAll('.topic-card').forEach(card => {
+                if (subject === 'all' || card.classList.contains(subject)) card.classList.remove('hidden');
+                else card.classList.add('hidden');
+            });
         }
+    </script>
+</body>
+</html>
