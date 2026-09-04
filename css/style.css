@@ -83,7 +83,7 @@ button{
 }
 .card{
     background: white;
-    margin-top: 0;
+    margin-top: 100px;
     height: 314px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 225, 0.3);
