@@ -1,13 +1,13 @@
 
 *{
-    background-color: gold;
+    background-color: #eff6ff;
 }
 header{
     text-align: center;
     justify-content: space-between;
     align-items: center;
     padding: 25px 8%;
-    border-bottom: 1px solid #1a1a1a;
+    background-color: #1d4ed8;
 }
 li{
     text-decoration: none;
@@ -37,20 +37,17 @@ nav a:hover{
     color: red;
 }
 nav h1{
-    color: white;
-    display: block;
+    color: black;
     margin-right: 8px;
 }
 body{
     font-family: Bastoni;
     padding: 20px;
-    background-color: gold;
 }
 .login-container{
     text-align: center;
     margin: 100px auto;
     padding: 20px;
-    background: red;
     width: 300px;
     border: 10px solid black;
 }
@@ -120,8 +117,4 @@ button{
 button:hover{
     background: black;
     transform: scale(1.1);
-}
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background: gold;
 }
